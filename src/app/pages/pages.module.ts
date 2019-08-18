@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { BoosterComponent } from '../components/booster/booster.component';
 import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-chart.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-ch
     ProgressComponent,
     Graphics1Component,
     BoosterComponent,
-    DoughnutChartComponent
+    DoughnutChartComponent,
+    AccountSettingsComponent
   ],
   imports: [
     SharedModule,
