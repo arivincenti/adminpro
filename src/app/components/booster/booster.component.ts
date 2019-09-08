@@ -25,7 +25,7 @@ export class BoosterComponent implements OnInit {
   ngOnInit() {}
 
   onChange(value: number) {
-    console.log("modelo cambio");
+
     if (value <= 0) {
       this.progress = 0;
     } else if (value >= 100) {
@@ -33,7 +33,7 @@ export class BoosterComponent implements OnInit {
     } else {
       this.progress = value;
     }
-    console.log(this.txtProgress.nativeElement);
+
     this.txtProgress.nativeElement.value = this.progress;
     this.newValue.emit(this.progress);
   }
