@@ -32,13 +32,13 @@ export class RegisterComponent implements OnInit {
     );
 
     //Seteo el form
-    this.form.setValue({
-      nombre: "Ariel",
-      email: "arivincenti@gmail.com",
-      password: "123456",
-      password2: "123456",
-      condiciones: true
-    });
+    // this.form.setValue({
+    //   nombre: "Ariel",
+    //   email: "arivincenti@gmail.com",
+    //   password: "123456",
+    //   password2: "123456",
+    //   condiciones: true
+    // });
   }
 
   //Validators personalizados

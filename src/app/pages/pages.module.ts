@@ -12,6 +12,9 @@ import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-ch
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { PipesModule } from '../pipes/pipes.module';
+import { ProfileComponent } from './profile/profile.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -23,19 +26,23 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     DoughnutChartComponent,
     AccountSettingsComponent,
     PromisesComponent,
-    RxjsComponent
+    RxjsComponent,
+    ProfileComponent
   ],
   imports: [
+    CommonModule,
     SharedModule,
     PagesRoutingModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    PipesModule
   ],
   exports: [
     PagesComponent,
     DashboardComponent,
     ProgressComponent,
     Graphics1Component,
+    ProfileComponent
   ]
 })
 export class PagesModule { }
