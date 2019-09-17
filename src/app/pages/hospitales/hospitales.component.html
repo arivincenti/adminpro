@@ -1,0 +1,87 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input type="text" #input class="form-control" placeholder="Buscar Hospital"
+          (keyup)="buscarHospital(input.value)">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="loading">
+  <div class="col-12">
+    <div class="alert alert-warning text-center">
+      <strong>Cargando</strong>
+      <br>
+      <i class="fa fa-refresh fa-spin fa-2x"></i>
+      <br>
+      <span>Espere por favor</span>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <h3 clas="card-title">Hospitales registrados ( <small>{{registros}}</small> )</h3>
+          </div>
+          <div class="col-6 d-flex justify-content-end">
+            <button type="button" class="btn btn-success btn-sm" (click)="mostrarModalNuevoHospital()"> <i class="fa fa-plus"></i> Nuevo Hospital</button>
+          </div>
+        </div>
+ 
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let hospital of hospitales">
+              <td> <img [src]="hospital.img | image:'hospitales'" class="w60" style="cursor:pointer;"
+                  (click)="mostrarModal(hospital)"></td>
+              <td><input type="text" [(ngModel)]="hospital.nombre" name="nombre" class="form-control"></td>
+              <td>
+                <div class="d-flex justify-content-end">
+                  <button class="btn btn-primary btn-sm mr-1" (click)="actualizarHospital(hospital)">
+                    <i class="fa fa-save"></i> Guardar
+                  </button>
+                  <button class="btn btn-danger btn-sm">
+                    <i class="fa fa-trash-o"></i> Eliminar
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-outline-secondary mr-2" (click)="cambiarDesde(-5)">Anteriores</button>
+        <button class="btn btn-outline-secondary" (click)="cambiarDesde(5)">Siguientes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-background animated fadeIn" [ngClass]="handle_modal">
+    <div class="modal" style="display:block;" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+          </div>
+          <div class="modal-body">
+            <input type="text" class="form-control" [(ngModel)]="hospital.nombre" name="nombre">
+          </div>
+          <div class="modal-footer">
+            <button type="button" [disabled]="!hospital.nombre" class="btn btn-primary" (click)="crearHospital()">Crear Hospital</button>
+            <button type="button" class="btn btn-secondary" (click)="cerrarModalNuevoHospital()">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

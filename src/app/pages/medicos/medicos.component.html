@@ -1,0 +1,69 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input type="text" #input class="form-control" placeholder="Buscar Medico" (keyup)="buscarMedicos(input.value)">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="loading">
+  <div class="col-12">
+    <div class="alert alert-warning text-center">
+      <strong>Cargando</strong>
+      <br>
+      <i class="fa fa-refresh fa-spin fa-2x"></i>
+      <br>
+      <span>Espere por favor</span>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <h3 clas="card-title">Medicos registrados ( <small>{{registros}}</small> )</h3>
+          </div>
+          <div class="col-6 d-flex justify-content-end">
+            <button type="button" [routerLink]="['/medico', 'nuevo']" class="btn btn-success btn-sm"> <i
+                class="fa fa-plus"></i> Nuevo Medico</button>
+          </div>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Hospital</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let medico of medicos">
+              <td> <img [src]="medico.img | image:'medicos'" class="w40 img-circle"></td>
+              <td>{{medico.nombre}}</td>
+              <td>{{medico.hospital.nombre}}</td>
+              <td>
+                <div class="d-flex justify-content-end">
+                  <button class="btn btn-primary btn-sm mr-1" [routerLink]="['/medico', medico._id]">
+                    <i class="fa fa-edit"></i> Editar
+                  </button>
+                  <button class="btn btn-danger btn-sm">
+                    <i class="fa fa-trash"></i> Eliminar
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-outline-secondary mr-2" (click)="cambiarDesde(-5)">Anteriores</button>
+        <button class="btn btn-outline-secondary" (click)="cambiarDesde(5)">Siguientes</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,8 +9,8 @@
        <ul id="sidebarnav">
 
          <hr>
-         <li *ngFor="let menu of sidebarService.menu">
-           <a class="has-arrow waves-effect waves-dark" data-toggle="collapse" href="#dashboard-menu" role="button" aria-expanded="false" aria-controls="dashboard-menu">
+         <li *ngFor="let menu of sidebarService.menu; index as i">
+           <a class="has-arrow waves-effect waves-dark" data-toggle="collapse" href="#dashboard-menu{{i}}" role="button" aria-expanded="false" aria-controls="dashboard-menu">
              <i [class]="menu.icon"></i>
              <span class="hide-menu">
                {{menu.title}}
@@ -19,7 +19,7 @@
                </span>
              </span>
            </a>
-           <div class="collapse" id="dashboard-menu">
+           <div class="collapse" id="dashboard-menu{{i}}">
              <ul>
                <li *ngFor="let submenu of menu.submenu">
                  <a routerLinkActive='active' [routerLink]="[submenu.url]">{{submenu.subtitle}}</a>

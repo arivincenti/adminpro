@@ -15,6 +15,11 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { ProfileComponent } from './profile/profile.component';
 import { CommonModule } from '@angular/common';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { MedicosComponent } from './medicos/medicos.component';
+import { HospitalesComponent } from './hospitales/hospitales.component';
+import { ModalUploadFileComponent } from '../components/modal-upload-file/modal-upload-file.component';
+import { MedicoComponent } from './medicos/medico/medico.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,12 @@ import { CommonModule } from '@angular/common';
     AccountSettingsComponent,
     PromisesComponent,
     RxjsComponent,
-    ProfileComponent
+    ProfileComponent,
+    UsuariosComponent,
+    MedicosComponent,
+    HospitalesComponent,
+    ModalUploadFileComponent,
+    MedicoComponent
   ],
   imports: [
     CommonModule,

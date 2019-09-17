@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Usuario } from "src/app/models/usuario.model";
-import { URL_SERVICIOS } from "src/app/config/config";
+import { path } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/internal/operators/map";
 import { Router } from "@angular/router";
@@ -48,7 +48,7 @@ export class UsuarioService {
   }
 
   loginGoogle(token: string) {
-    let url = URL_SERVICIOS + "/login/google";
+    let url = path + "/login/google";
 
     return this.http.post(url, { token }).pipe(
       map((res: any) => {
@@ -59,7 +59,7 @@ export class UsuarioService {
   }
 
   login(usuario: Usuario, recuerdame: boolean) {
-    let url = URL_SERVICIOS + "/login";
+    let url = path + "/login";
 
     return this.http.post(url, usuario).pipe(
       map((res: any) => {
@@ -81,7 +81,7 @@ export class UsuarioService {
   }
 
   crearUsuario(usuario: Usuario) {
-    let url = URL_SERVICIOS + "/usuarios";
+    let url = path + "/usuarios";
 
     return this.http.post(url, usuario).pipe(
       map((resp: any) => {
@@ -91,21 +91,38 @@ export class UsuarioService {
   }
 
   actualizarUsuario(usuario: Usuario) {
-    let url = `${URL_SERVICIOS}/usuarios/${usuario._id}?token=${this.token}`;
+    let url = `${path}/usuarios/${usuario._id}?token=${this.token}`;
 
     return this.http.put(url, usuario).pipe(
       map((res: any) => {
-        this.saveStorage(res.usuario._id, this.token, res.usuario);
+
+        if(usuario._id === this.usuario._id){
+          this.saveStorage(res.usuario._id, this.token, res.usuario);
+        }
         return res.usuario;
       })
     );
   }
 
   changeImg(file: File, id: string) {
-    return this.uploadFile.uploadFile(file, "usuarios", id).pipe(map((res:any) => {
-      this.usuario.img = res.data.img;
-      this.saveStorage(id, this.token, this.usuario);
-      return res.data;
-    }));
+    return this.uploadFile.uploadFile(file, "usuarios", id).pipe(
+      map((res: any) => {
+        this.usuario.img = res.data.img;
+        this.saveStorage(id, this.token, this.usuario);
+        return res.data;
+      })
+    );
+  }
+
+  cargarUsuarios(desde: number = 0) {
+    let url = `${path}/usuarios?token=${this.token}&desde=${desde}`;
+
+    return this.http.get(url);
+  }
+
+  buscarUsuarios(termino: string) {
+    let url = `${path}/search/search/usuarios/${termino}`;
+
+    return this.http.get(url);
   }
 }

@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
   styleUrls: ["./profile.component.css"]
 })
 export class ProfileComponent implements OnInit {
-  usuario: Usuario;
+  usuario: Usuario
   imgUpload: File;
   imgTemp: string;
   constructor(private usuarioService: UsuarioService) {}
