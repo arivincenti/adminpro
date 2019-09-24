@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { path } from "src/environments/environment";
 import { Hospital } from "src/app/models/hospital.model";
 import { map } from "rxjs/operators";
 import { UploadFilesService } from "../uploadFiles/upload-files.service";
 import { UsuarioService } from '../usuario/usuario.service';
+import { URL_SERVICIOS } from 'src/app/config/config';
 
 @Injectable({
   providedIn: "root"
@@ -20,14 +20,14 @@ export class HospitalesService {
   // Carga todos los hospitales
   // ==================================================
   cargarHospitales(desde:number) {
-    return this.http.get(`${path}/hospitales?desde=${desde}&token=${this.usuarioService.token}`);
+    return this.http.get(`${URL_SERVICIOS}/hospitales?desde=${desde}&token=${this.usuarioService.token}`);
   }
 
   // ==================================================
   // Busca un hospital por lo que viene del buscador
   // ==================================================
   buscarHospitales(termino: string) {
-    let url = `${path}/search/search/hospitales/${termino}`;
+    let url = `${URL_SERVICIOS}/search/search/hospitales/${termino}`;
     return this.http.get(url);
   }
 
@@ -35,7 +35,7 @@ export class HospitalesService {
   // Busca un hospital por lo que viene del buscador
   // ==================================================
   buscarHospital(id: string) {
-    let url = `${path}/hospitales/${id}`;
+    let url = `${URL_SERVICIOS}/hospitales/${id}`;
     url += `?token=${this.usuarioService.token}`;
     return this.http.get(url);
   }
@@ -44,7 +44,7 @@ export class HospitalesService {
   // Crear un nuevo hospital
   // ==================================================
   crearHospital(hospital: Hospital) {
-    let url = `${path}/hospitales?token=${this.usuarioService.token}`;
+    let url = `${URL_SERVICIOS}/hospitales?token=${this.usuarioService.token}`;
     return this.http.post(url, hospital).pipe(
       map((res: any) => {
         return res.data;
@@ -56,7 +56,7 @@ export class HospitalesService {
   // Actualiza el hospital
   // ==================================================
   actualizarHospital(hospital: Hospital) {
-    let url = `${path}/hospitales/${hospital._id}?token=${this.usuarioService.token}`;
+    let url = `${URL_SERVICIOS}/hospitales/${hospital._id}?token=${this.usuarioService.token}`;
     return this.http.put(url, hospital);
   }
 }

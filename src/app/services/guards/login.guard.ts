@@ -5,7 +5,7 @@ import { UsuarioService } from '../usuario/usuario.service';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginGuardGuard implements CanActivate {
+export class LoginGuard implements CanActivate {
 
   constructor(private usuarioService: UsuarioService, private router:Router){}
 
@@ -15,7 +15,7 @@ export class LoginGuardGuard implements CanActivate {
       return true;
     }else{
       console.log('Bloqueado por el guard');
-      this.router.navigate(['/login']);
+      this.usuarioService.logOut();
       return false;
     }
   }

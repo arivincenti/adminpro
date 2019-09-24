@@ -6,7 +6,6 @@ export const environment = {
   production: false
 };
 
-export const path = 'http://localhost:3000';
 
 /*
  * For easier debugging in development mode, you can import the following file
